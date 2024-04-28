@@ -18,7 +18,7 @@ main() {
 
   if [[ ${NEED_MINIVERTER} -eq 1 ]]; then
     cd materials/build/
-    run.sh
+    bash run.sh
     code ../../src
   else
     code ./src
