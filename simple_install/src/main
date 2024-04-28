@@ -55,5 +55,4 @@ main() {
   reboot
 }
 
-# main
-install_postgresql
+main
