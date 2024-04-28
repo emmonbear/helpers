@@ -4,10 +4,13 @@ install_packages() {
   sudo apt install vim -y --no-upgrade
   sudo snap install code --classic
 }
+
 install_packages_for_review() {
   sudo apt-get install check -y
   sudo apt-get install lcov -y
   sudo apt install gcovr -y
+  sudo apt install doxygen -y
+  sudo apt install libncursesw5-dev gcc make -y
 }
 
 install_docker() {
@@ -25,6 +28,19 @@ install_docker() {
   sudo usermod -aG docker username
 }
 
+install_postgresql() {
+  sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+  sudo apt-get update
+  sudo apt-get -y install postgresql
+  sudo apt-get -y install postgresql-16
+
+  sudo systemctl status postgresql
+  sudo systemctl start postgresql
+  sudo -u postgres psql
+  # CREATE USER ваш_пользователь WITH PASSWORD 'ваш_пароль';
+}
+
 
 main() {
   sudo apt update
@@ -33,10 +49,11 @@ main() {
   install_packages
   install_packages_for_review
   install_docker
+  install_postgresql
 
   sudo apt autoremove
   reboot
 }
 
 # main
-install_packages_for_review
+install_postgresql
