@@ -11,7 +11,7 @@ install_packages_for_review() {
   sudo apt install gcovr -y
   sudo apt install doxygen -y
   sudo apt install libncursesw5-dev gcc make -y
-  sudo apt install clang -y
+  sudo apt install clang-format -y
 }
 
 install_docker() {
