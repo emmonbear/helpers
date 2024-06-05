@@ -12,6 +12,7 @@ install_packages_for_review() {
   sudo apt install doxygen -y
   sudo apt install libncursesw5-dev gcc make -y
   sudo apt install clang-format -y
+  sudo apt install libgtest-dev
 }
 
 install_docker() {
